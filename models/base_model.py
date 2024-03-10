@@ -20,7 +20,7 @@ class BaseModel():
                 if key == 'created_at' or key == 'updated_at':
                     theformat = "%Y-%m-%dT%H:%M:%S.%f"
                     value = datetime.datetime.strptime(value, theformat)
-                    setattr(self, key, value)
+                    setattr(self, key, value.isoformat())
                 elif key != '__class__':
                     setattr(self, key, value)
             if 'id' not in kwargs:
