@@ -2,12 +2,12 @@
 
 """Import the uuid, datetime modules."""
 import uuid
-from datetime import datetime
+import datetime
 import models
 
 """The base model class."""
 
-# time = "%Y-%m-%dT%H:%M:%S.%f"
+time = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class BaseModel():
@@ -19,15 +19,16 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
                     theformat = "%Y-%m-%dT%H:%M:%S.%f"
-                    setattr(self, key, datetime.strptime(value, time))
-                else:
+                    value = datetime.datetime.strptime(value, theformat)
+                    setattr(self, key, value)
+                elif key != '__class__':
                     setattr(self, key, value)
             if 'id' not in kwargs:
                 self.id = str(uuid.uuid4())
             if 'created_at' not in kwargs:
                 self.created_at = datetime.now()
             if 'updated_at' not in kwargs:
-                self.updated_at = datetime.now() 
+                self.updated_at = datetime.now()
         #    for key, value in kwargs.items():
         #        if key == '__class__':
         #            continue
