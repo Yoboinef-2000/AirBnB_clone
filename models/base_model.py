@@ -2,12 +2,12 @@
 
 """Import the uuid, datetime modules."""
 import uuid
-import datetime
+from datetime import datetime
 import models
 
 """The base model class."""
 
-time = "%Y-%m-%dT%H:%M:%S.%f"
+# time = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class BaseModel():
@@ -17,13 +17,25 @@ class BaseModel():
         """Initialize instances."""
         if kwargs:
             for key, value in kwargs.items():
-                if key == '__class__':
-                    continue
-
-                if key in ['created_at', 'updated_at']:
+                if key == 'created_at' or key == 'updated_at':
                     theformat = "%Y-%m-%dT%H:%M:%S.%f"
-                    value = datetime.datetime.strptime(value, theformat)
-                setattr(self, key, value)
+                    setattr(self, key, datetime.strptime(value, time))
+                else:
+                    setattr(self, key, value)
+            if 'id' not in kwargs:
+                self.id = str(uuid.uuid4())
+            if 'created_at' not in kwargs:
+                self.created_at = datetime.now()
+            if 'updated_at' not in kwargs:
+                self.updated_at = datetime.now() 
+        #    for key, value in kwargs.items():
+        #        if key == '__class__':
+        #            continue
+        #
+        #        if key in ['created_at', 'updated_at']:
+        #            theformat = "%Y-%m-%dT%H:%M:%S.%f"
+        #           value = datetime.datetime.strptime(value, theformat)
+        #       setattr(self, key, value)
         # if kwargs:
         #    for key, value in kwargs.items():
         #        if key != "__class__":
