@@ -1,0 +1,42 @@
+.places h1{
+    color: Black;
+    font-size: 30px;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    margin-top: 0;
+    
+}
+
+.places article{
+    
+    width: 390px;
+    /* If you want 2 places displayed horizontally and
+    1 below them, lower the width:
+    width: 200px; */
+    padding: 20px;
+    margin: 20px;
+    border: #FF5A5F solid 1px;
+    border-radius: 4px; 
+
+}
+
+.places h2{
+    color: Black;
+    font-size: 30px;
+    text-align: center;
+
+}
+
+.secondContainer
+{
+    display: flex;
+    /*flex-wrap: wrap;: By default, flex items will try to fit
+    into a single line. This property allows flex items to wrap 
+    onto multiple lines if they exceed the container's width.*/
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: stretch;
+}
+
+
